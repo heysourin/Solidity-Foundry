@@ -58,7 +58,7 @@ contract ERC721 is IERC721 {
     mapping(address => uint) internal _balanceOf;
 
     // Mapping from token ID to approved address
-    mapping(uint => address) internal _approvals;
+    mapping(uint => address) public _approvals;
 
     // Mapping from owner to operator approvals
     mapping(address => mapping(address => bool)) public isApprovedForAll;

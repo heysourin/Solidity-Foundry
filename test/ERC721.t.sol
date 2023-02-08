@@ -82,5 +82,18 @@ contract TokenContractTest is Test {
         assertEq(ownerOfToken9, mary);
     }
 
+    function testApprove() public{
+        myNFT = new MyNFT();
+        myNFT.mint(bob, 10);
 
+        vm.startPrank(bob);
+
+        myNFT.approve(mary,10);
+
+        address spenderOf10 = myNFT._approvals(10);
+
+        assertEq(spenderOf10, mary);
+
+        
+    }
 }
