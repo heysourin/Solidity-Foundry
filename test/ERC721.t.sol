@@ -5,7 +5,7 @@ import "forge-std/Test.sol";
 import "../src/ERC721.sol";
 
 contract TokenContractTest is Test {
-    ERC721 public erc721;
+    // ERC721 public erc721;
     MyNFT public myNFT;
 
     address bob = address(0x1);
@@ -62,5 +62,25 @@ contract TokenContractTest is Test {
         myNFT.burn(9);
 
         emit log_address(mary);
+
+        vm.stopPrank();
+
+        //Todo: Testing Burn
+
     }
+
+    function testTransferFrom() public{
+        myNFT = new MyNFT();
+        myNFT.mint(bob, 9);
+
+        vm.startPrank(bob);
+
+        myNFT.transferFrom(bob, mary,9);
+
+        address ownerOfToken9 = myNFT.ownerOf(9);
+
+        assertEq(ownerOfToken9, mary);
+    }
+
+
 }
